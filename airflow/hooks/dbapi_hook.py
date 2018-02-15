@@ -42,10 +42,10 @@ class DbApiHook(BaseHook):
             raise AirflowException("conn_name_attr is not defined")
         elif len(args) == 1:
             setattr(self, self.conn_name_attr, args[0])
-        elif self.conn_name_attr not in kwargs:
+        elif "conn_name_attr" not in kwargs:
             setattr(self, self.conn_name_attr, self.default_conn_name)
         else:
-            setattr(self, self.conn_name_attr, kwargs[self.conn_name_attr])
+            setattr(self, self.conn_name_attr, kwargs["conn_name_attr"])
 
     def get_conn(self):
         """Returns a connection object
